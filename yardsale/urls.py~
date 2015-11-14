@@ -20,5 +20,5 @@ import seller.views
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', seller.views.index, name='index'),
-    url(r'^profile$', seller.views.profile, name='profile'),
+    url(r'^search$', seller.views.profile, name='profile'),
 ]
