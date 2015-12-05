@@ -1,0 +1,47 @@
+
+.search-box{
+	padding:10px;
+	width:67em;
+}
+.sort-bar{
+	text-align:center;
+}
+.seller-bar{
+	text-align:center;
+}
+
+.sidebar{
+	padding-left: 20px;
+	text-align:left;
+	background-color:#F5F5F5;
+	height:100em;
+}
+
+.thumbnail img { 
+	min-height:10em; 
+	height:10em; 
+}
+
+.video-des{
+	margin-left: -15px;
+}
+
+.cont-button{
+	margin-top:15px;
+}
+.product-panel{
+	margin-top:2em;
+	margin-left:-15px;
+
+}
+.div-tables{
+	max-height:20px;
+}
+
+.desc{
+	min-height: 20em;
+}
+
+
+
+

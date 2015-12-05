@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+ROOT_URLCONF = 'yardsale.urls'
 # Application definition
 
 INSTALLED_APPS = (

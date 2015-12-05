@@ -15,10 +15,21 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.conf.urls import patterns, url
 import seller.views
+from django.conf import settings
+from django.conf.urls.static import static
+from django.views.generic import RedirectView
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', seller.views.index, name='index'),
+    url(r'^$', seller.views.home, name='home'),
+    url(r'^my_products$', seller.views.my_products, name='my_products'),
     url(r'^profile$', seller.views.profile, name='profile'),
+    url(r'^grid$', seller.views.grid, name='grid'),
+    url(r'^product$', seller.views.product, name='product'),
+    url(r'^contact$', seller.views.contact, name='contact'),
+    url(r'^upload$', seller.views.upload, name='upload'),
+    url(r'^channel$', seller.views.channel, name='channel'),
+    url(r'^list$', seller.views.list, name='list'),
+
 ]
