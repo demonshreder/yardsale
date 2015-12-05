@@ -1,0 +1,159 @@
+<!Doctype HTML>
+<html lang="en">
+  <head>
+    <meta name ="viewport" content="width=device-width, initial-scale=1">
+    <title>Yardsale&trade;</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="coverflow/coverflow.css">
+    <link rel="stylesheet" href="css/style1.css">
+    <style>
+    .jumbotron{
+    background-image:url('images/ph4.jpg');
+    color:black;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="home.html"><img src="images/YardSale.png" style="height:30px"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="col-lg-6 search-box">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search for products">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Go!</button>
+      </span>
+    </div><!-- /input-group -->
+  </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="profile.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Channel <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="profile.html">My Homepage</a></li>
+            <li><a href="profile.html">Sign-Out</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div>
+  <div class="jumbotron">
+  <h1 class="text-center">Demonshreder</h1>
+  </div>
+
+<div class="col-md-12 ">
+    <h4>iPhone 6S</h4>
+  </div>
+  <div class="main-content">
+    <div class="col-md-12">
+    <ul class="nav nav-pills">
+        <li role="presentation" ><a href="profile.html">Home</a></li>
+        <li role="presentation" class="active"><a href="product.html">Product</a></li>
+        <li role="presentation"><a href="contact.html">Contact</a></li>
+    </ul>
+    <br>
+  <div class="des">
+    <div class="video-des col-md-5">
+    <div class="embed-responsive embed-responsive-16by9">
+    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/cSTEB8cdQwo"></iframe>
+    </div>
+    </div>
+    <div class="text-des col-md-7">
+      <h2 id="about">About iPhone 6</h2>
+      <div class="tables">
+      <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Username</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>Larry</td>
+          <td>the Bird</td>
+          <td>@twitter</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+      <a class="btn btn-default cont-button" href="contact.html" role="button">Contact Seller</a>
+    </div>
+<div class="col-md-12 product-panel">
+    <!-- Categories -->
+ <h3 class="text-left">Products</h3>
+ <div class="row">
+ <a href="product.html">
+  <div class="col-sm-6 col-md-4 text-center">
+    <div class="thumbnail">
+      <img src="images/ph3.jpg" alt="Gadgets">
+      <div class="caption">
+        <h4>Electronics &amp; Gadgets</h4>
+      </div>
+    </div>
+  </div>
+</a>
+
+<a href="product.html">
+  <div class="col-sm-6 col-md-4 text-center">
+    <div class="thumbnail">
+      <img src="images/product-2.jpg" alt="Posters">
+      <div class="caption">
+        <h4>Posters</h4>
+        </div>
+    </div>
+  </div>
+</a>
+
+<a href="product.html">
+  <div class="col-sm-6 col-md-4 text-center">
+    <div class="thumbnail">
+      <img src="images/product-4.jpg" alt="...">
+      <div class="caption">
+        <h4>Clothes</h4>
+        </div>
+    </div>
+  </div>
+</a>
+</div><!-- Category row ends-->
+
+
+</div>
+    <script src="static/js/bootstrap.min.js"></script>
+    <script src="static/js/jquery.min.js"></script>
+    <script src="static/coverflow/coverflow.min.js"></script>
+    <script>
+    $(function() {
+        $('#coverflow').coverflow();
+    });
+    </script>
+  </body>
+  </html>
