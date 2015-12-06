@@ -11,7 +11,6 @@ class sellers(models.Model):
         docfile = models.FileField(upload_to='documents/%Y/%m/%d')
         phone = models.IntegerField()
         email = models.EmailField()
-        size = models.IntegerField()
         address = models.TextField()
         desc = models.TextField()
         video = models.TextField()

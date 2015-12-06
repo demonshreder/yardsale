@@ -31,5 +31,6 @@ urlpatterns = [
     url(r'^upload$', seller.views.upload, name='upload'),
     url(r'^channel$', seller.views.channel, name='channel'),
     url(r'^list$', seller.views.list, name='list'),
+    url(r'^index$', seller.views.index, name='index'),
 
 ]
