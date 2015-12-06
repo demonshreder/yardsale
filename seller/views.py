@@ -4,6 +4,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from ast import literal_eval as make_tuple
 
 from seller.models import sellers, Document, products
 from seller.forms import DocumentForm
@@ -16,22 +17,26 @@ def home(request):
         return render(request,'seller/home.html')
         
 def profile(request):
-        for seller_boy in request.POST:
-            s = seller_boy
-        print (s)
+        for k in request.POST:
+            kek = k
+
+        kek.replace(kek[0],"")
+        kek.replace(kek[-1],"")
+        kek =  make_tuple(kek)
+        
         error = ""
-        for s in seller_boy:
+        for s in kek:
             try:
-                s = sellers(first_name=str(s['first_name']),phone=str(s['phone']),email=str(s['email']),address=str(s['address']),about=str(s['about']),timings=str(s['timings']))
-                s.save()
-                kek = True
+                b = sellers(first_name=str(s['first_name']),phone=str(s['phone']),email=str(s['email']),address=str(s['address']),about=str(s['about']),timings=str(s['timings']))
+                b.save()
+                kek= True
             except Exception:
-                #error = str(Exception)
+                error = str(Exception)
                 kek = False
                 break
 
         if kek:
-            return render (request, 'seller/channel.html', {'post':"Your information has been updated"})
+            return render (request, 'seller/channel.html', {'post':request.POST, "motu":kek})
         else:
             return render(request,'seller/channel.html',{'post':'Sorry something went wrong.'})
 
