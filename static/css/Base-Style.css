@@ -1,7 +1,11 @@
-
+.main-page{
+	margin-left: 10em;
+	margin-right: 10em;
+}
 .search-box{
 	padding:10px;
-	width:67em;
+	width:50em;
+
 }
 .sort-bar{
 	text-align:center;

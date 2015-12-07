@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from django import forms
+from django.contrib.auth.models import User
+from seller.models import UserProfile
 
 
 class DocumentForm(forms.Form):
@@ -8,5 +10,14 @@ class DocumentForm(forms.Form):
         label='Select a file'
     )
 
-class NameForm(forms.Form):
-	your_name = forms.CharField(label="Your Name", max_length = 100)
+class UserForm(forms.ModelForm):
+	password = forms.CharField(widget=forms.PasswordInput())
+
+	class Meta:
+		model = User
+		fields = ('username', 'email', 'password', 'first_name','last_name')
+
+class UserProfileForm(forms.ModelForm):
+	class Meta:
+		model = UserProfile
+		fields = ('picture', 'phone' ,'address', 'desc', 'video', 'timings')

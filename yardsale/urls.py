@@ -26,11 +26,12 @@ urlpatterns = [
     url(r'^my_products$', seller.views.my_products, name='my_products'),
     url(r'^profile$', seller.views.profile, name='profile'),
     url(r'^grid$', seller.views.grid, name='grid'),
-    url(r'^product$', seller.views.product, name='product'),
-    url(r'^contact$', seller.views.contact, name='contact'),
     url(r'^upload$', seller.views.upload, name='upload'),
     url(r'^channel$', seller.views.channel, name='channel'),
     url(r'^list$', seller.views.list, name='list'),
     url(r'^index$', seller.views.index, name='index'),
-
+    url(r'^register$', seller.views.register, name='register'),
+    url(r'^login$', seller.views.user_login, name='login'),
+    url(r'^restricted', seller.views.restricted, name='restricted'),
+    url(r'^logout$', seller.views.user_logout, name='logout')
 ]

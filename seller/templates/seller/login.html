@@ -1,0 +1,83 @@
+<!Doctype HTML>
+<html lang="en">
+  <head>
+    <meta name ="viewport" content="width=device-width, initial-scale=1">
+    <title>Login|yardsale</title>
+    <link rel="stylesheet" href="static/css/normalize.css">
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="static/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="static/css/Base-Style.css">
+    <link rel="stylesheet" href="static/css/dashboard.css">
+    <link rel="stylesheet" href="static/font-awesome/css/font-awesome.min.css">
+    <style>
+        .login-fields{
+            margin-left: 10em;
+            margin-right:10em;
+        }
+    </style>
+  </head>
+
+    <body>
+        <!--Search Bar Start-->
+        <nav class="navbar navbar-default">
+            <div class="container-fluid title-bar">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="/">yardsale</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="col-lg-6 search-box">
+              <div class="input-group search-bar">
+                <input type="text" class="form-control" placeholder="Search for products">
+                <span class="input-group-btn">
+                  <button class="btn btn-default" type="button">Go!</button>
+                </span>
+            </div>
+            <!-- /input-group -->
+          </div>
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+                <a href="channel" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Channel <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="channel">My Page</a></li>
+                  <li><a href="channel">Edit Account Settings</a></li>
+                  <li><a href="my_products">Edit Products</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div>
+        </nav>
+    <div class="main-page">
+        <!--Search Bar End-->
+        <hr>
+        <h1 class="text-center">Login to yardsale</h1>
+        <hr>
+    <div class="login-fields">
+        <form id="login_form" method="post" action="login">
+            {% csrf_token %}
+          <div class="form-group">
+            <label for="Username">Username:</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Username" value=""size="50"/>
+          </div>
+          <div class="form-group">
+            <label for="Password">Password:</label>
+            <input type="password" class="form-control" id="password" name="password" value="" size="50" placeholder="Password"/>
+          </div>
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </div>
+    </div>
+<script src="static/js/bootstrap.min.js"></script>
+<script src="static/js/jquery.min.js"></script>
+
+</body>
+</html>
