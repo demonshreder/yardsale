@@ -33,5 +33,6 @@ urlpatterns = [
     url(r'^register$', seller.views.register, name='register'),
     url(r'^login$', seller.views.user_login, name='login'),
     url(r'^restricted', seller.views.restricted, name='restricted'),
-    url(r'^logout$', seller.views.user_logout, name='logout')
+    url(r'^logout$', seller.views.user_logout, name='logout'),
+    url(r'^channel_edit$', seller.views.channel_edit, name='channel_edit')
 ]

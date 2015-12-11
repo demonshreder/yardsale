@@ -1,11 +1,12 @@
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
-from seller.models import Document, products, UserProfile
-from seller.forms import DocumentForm, UserForm, UserProfileForm
+from seller.models import Document, products
+from seller.forms import DocumentForm, UserForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 
@@ -14,7 +15,11 @@ from django.contrib.auth import logout
 # Create your views here.
 
 def home(request):
-        return render(request,'seller/home.html')
+        return render(request,'seller/home.html', {'seller_folks':User.objects.all()})
+
+@login_required
+def channel_edit(request):
+        return render(request,'seller/channel_edit.html', {'u':request.user})
 
 def register(request):
 
@@ -27,10 +32,9 @@ def register(request):
         # Attempt to grab information from the raw form information.
         # Note that we make use of both UserForm and UserProfileForm.
         user_form = UserForm(data=request.POST)
-        profile_form = UserProfileForm(data=request.POST)
 
         # If the two forms are valid...
-        if user_form.is_valid() and profile_form.is_valid():
+        if user_form.is_valid():
             # Save the user's form data to the database.
             user = user_form.save()
 
@@ -42,11 +46,28 @@ def register(request):
             # Now sort out the UserProfile instance.
             # Since we need to set the user attribute ourselves, we set commit=False.
             # This delays saving the model until we're ready to avoid integrity problems.
-            profile = profile_form.save(commit=False)
-            profile.user = user
-
+            #profile = profile_form.save(commit=False)
+            #profile.user = user
+            #MY COMMENT u = UserProfile(user=user, picture=profile_form['picture'],phone=profile_form['phone'],address=profile_form['address'],desc=profile_form['desc'],video=profile_form['video'],timings=profile_form['timings'] )
             # Now we save the UserProfile model instance.
-            profile.save()
+            #profile.save()
+            #s = request.POST
+            #u = user
+            #if len(s)==0:
+                #return render(request, 'seller/my_products.html', {'thumbs':(1,2,3,4,5,6,7,8,9,10), "u":u})# "u_products":u.products},#
+            #else:
+                #error = ""
+               # try:
+                 #   b = UserProfile(user=u, picture=s['picture'],phone=s['phone'], address=s['address'],video=s['video'],desc=s['desc'], timings=s['timings'])
+                  #  b.save()
+                   # kek= True
+                #except Exception:
+                 #   error = str(Exception)
+                  #  kek = False
+                #if kek:
+                 #   return render (request, "seller/channel.html", {"u":u})
+                #else:
+                 #   return HttpResponse
 
             # Update our variable to tell the template registration was successful.
             registered = True
@@ -55,18 +76,15 @@ def register(request):
         # Print problems to the terminal.
         # They'll also be shown to the user.
         else:
-            print (user_form.errors, profile_form.errors)
+            print (user_form.errors)
 
     # Not a HTTP POST, so we render our form using two ModelForm instances.
     # These forms will be blank, ready for user input.
     else:
         user_form = UserForm()
-        profile_form = UserProfileForm()
 
     # Render the template depending on the context.
-    return render(request,
-            'seller/register.html',
-            {'user_form': user_form, 'profile_form': profile_form, 'registered': registered} )
+    return render(request,'seller/register.html', {'user_form': user_form, registered: 'registered'} )
         
 def user_login(request):
 
@@ -93,7 +111,7 @@ def user_login(request):
                 # If the account is valid and active, we can log the user in.
                 # We'll send the user back to the homepage.
                 login(request, user)
-                return HttpResponseRedirect('/')
+                return render(request,'seller/channel.html',{'user_folk':username, 'user_folk_id':user.id} )
             else:
                 # An inactive account was used - no logging in!
                 return HttpResponse("Your yardsale account is disabled.")
@@ -119,7 +137,7 @@ def user_logout(request):
     return HttpResponseRedirect('/')
 
 def profile(request):
-        s = request.POST
+        u = request.POST
         error = ""
         try:
             b = sellers(first_name=s['first_name'],last_name=s['last_name'],phone=s['phone'],email=s['email'],address=str(s['address']),desc=s['desc'],timings=s['timings'],video=s['video'])
@@ -130,9 +148,9 @@ def profile(request):
             kek = False
 
         if kek:
-            return render (request, 'seller/channel.html', {'post':request.POST})
+            return render (request, 'seller/profile.html', {'post':request.POST})
         else:
-            return render(request,'seller/channel.html',{'post':error})
+            return render(request,'seller/profile.html',{'post':error})
         #return render(request,'seller/profile.html')
 def product(request):
         return render(request, 'seller/product.html')
@@ -150,11 +168,29 @@ def grid(request):
 def upload(request):
         return render(request, 'seller/upload.html')
 
+@login_required
 def channel(request):
-        return render(request, 'seller/channel.html')
+        return render(request, 'seller/channel.html',{"u":request.user})
 
+@login_required
 def my_products(request):
-        return render(request, 'seller/my_products.html', {'thumbs':(1,2,3,4,5,6,7,8,9,10)})
+        u = request.user
+        s = request.POST
+        if len(s)==0:
+            return render(request, 'seller/my_products.html', {"u":u, "u_products":u.products_set.all()})# "u_products":u.products},#
+        else:
+            error = ""
+            try:
+                b = products(seller=u, product_name=s['product_name'],age=s['age'], sold="FALSE",reason=s['reason'],listed="2015-01-01",video=s['video'],desc=s['desc'])
+                b.save()
+                kek= True
+            except Exception:
+                error = str(Exception)
+                kek = False
+            if kek:
+                return render (request, "seller/my_products.html", {"u":u, "u_products":u.products_set.all()})
+            else:
+                return HttpResponse
 
 def get_name(request):
     # if this is a POST request we need to process the form data

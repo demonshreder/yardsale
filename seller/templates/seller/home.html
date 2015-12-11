@@ -38,6 +38,12 @@
         .carousel-control {
           padding-top:10%;
           width:5%;
+        }
+
+        #footer{
+          vertical-align: text-bottom;
+          display:block;
+          visibility: hidden;
         }         
  </style>
   </head>
@@ -45,6 +51,7 @@
   <body>
 
 <div class="content">
+  <nav class="navbar navbar-default">
             <div class="container-fluid title-bar">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -69,9 +76,9 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
               <li class="dropdown">
-                <a href="profile" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Channel <span class="caret"></span></a>
+                <a href="channel" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="display:inline-block">My Channel <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="profile">My Page</a></li>
+                  <li><a href="channel">My Page</a></li>
                   <li><a href="channel">Edit Account Settings</a></li>
                   <li><a href="my_products">Edit Products</a></li>
                 </ul>
@@ -80,99 +87,34 @@
           </div><!-- /.navbar-collapse -->
         </div>
 </nav>
-    <div class="col-md-12">
-    <!-- Categories -->
-      <div class="container">
-    <div class="col-md-12">
-</div>
- <h2 class="text-center">Categories</h2>
- <div class="row">
- <a href="grid">
-  <div class="col-sm-6 col-md-4 text-center">
-    <div class="thumbnail">
-      <img src="static/img/ph3.jpg" alt="Gadgets">
-      <div class="caption">
-        <h4>Electronics &amp; Gadgets</h4>
+<div class="main-page text-center">
+  {% for s in seller_folks %}
+  <div class="col-md-12">
+    <div class="col-md-4">
+      <hr>
+      {{s.first_name}} {{s.last_name}}
+      <hr>
+      <img src="{{s.picture}}" class="seller-image">
+      </div>
+      <div class="col-md-8 container-fluid">
+        <div class="row">
+          {% for p in s.products %}
+          <div class="col-xs-6 col-md-3">
+            <a href="product" class="thumbnail">
+              <img src="{{p.picture}}" alt="{{p.product_name}}">
+              <hr>
+              <h4>{{p.product_name}}</h4>
+            </a>
+          </div>
+          {% endfor %}
       </div>
     </div>
   </div>
-</a>
-
-<a href="grid">
-  <div class="col-sm-6 col-md-4 text-center">
-    <div class="thumbnail">
-      <img src="static/img/product-2.jpg" alt="Posters">
-      <div class="caption">
-        <h4>Posters</h4>
-        </div>
-    </div>
-  </div>
-</a>
-
-<a href="grid">
-  <div class="col-sm-6 col-md-4 text-center">
-    <div class="thumbnail">
-      <img src="static/img/product-4.jpg" alt="...">
-      <div class="caption">
-        <h4>Clothes</h4>
-        </div>
-    </div>
-  </div>
-</a>
-</div><!-- Category row ends-->
-
-<!-- Seller row starts -->
- <h2 class="text-center">Sellers</h2>
- <div class="row sellboys">
- <a href="profile">
-  <div class="col-sm-6 col-md-4 text-center">
-    <div class="thumbnail">
-      <img src="static/img/profile.png" alt="Gadgets">
-      <div class="caption">
-        <h4>Ram</h4>
-      </div>
-    </div>
-  </div>
-</a>
-
-<a href="profile">
-  <div class="col-sm-6 col-md-4 text-center">
-    <div class="thumbnail">
-      <img src="static/img/profile.png" alt="Posters">
-      <div class="caption">
-        <h4>Chandu</h4>
-        </div>
-    </div>
-  </div>
-</a>
-
-<a href="profile">
-  <div class="col-sm-6 col-md-4 text-center">
-    <div class="thumbnail">
-      <img src="static/img/profile.png" alt="...">
-      <div class="caption">
-        <h4>Nandu</h4>
-        </div>
-    </div>
-  </div>
-</a>
-
-<a href="profile">
-  <div class="col-sm-6 col-md-4 text-center">
-    <div class="thumbnail">
-      <img src="static/img/profile.png" alt="...">
-      <div class="caption">
-        <h4>Nandu</h4>
-        </div>
-    </div>
-  </div>
-</a>
-</div><!--Seller row ends-->
-<a href="/seller/register/">Register Here</a>
-
-
-    </div>
-  
+    {% endfor %}
+  <div id="footer">
+  <hr>
+  <div class="text-center"> &copy; 2015 yardsale</div>
+  </div>  
     <script src="static/js/bootstrap.min.js"></script>
     <script src="static/js/jquery.min.js"></script>
 

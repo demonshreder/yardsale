@@ -1,4 +1,5 @@
 from django.db import models
+import uuid
 from django.contrib.auth.models import User
 
 # Create your models here.
@@ -8,28 +9,28 @@ class Document(models.Model):
 
 class UserProfile(models.Model):
         # This line is required. Links UserProfile to a User model instance.
-        user = models.OneToOneField(User)
+        user_boy = models.OneToOneField(User, default=uuid.uuid4)
         # Additional Attributes
         picture = models.URLField(blank=True)
         phone = models.CharField(max_length=12,blank=True)
         address = models.TextField(blank=True)
         desc = models.TextField()
         video = models.URLField(blank=True)
-        timings = models.TextField()
+        timings = models.CharField(max_length=200)
 
-        def __unicode__(self):
-            return self.user.username
+        def __str__(self):
+            return (self.desc)
 
             
 class products(models.Model):
-        seller = models.OneToOneField(User)
+        seller = models.ForeignKey(User, default=uuid.uuid4)
         product_name = models.CharField(max_length=200)
-        age = models.IntegerField()
+        age = models.CharField(max_length=50)
         reason = models.TextField()
         listed = models.DateField()
         sold = models.BooleanField()
-        video = models.TextField()
-        picture = models.TextField()
+        video = models.URLField()
+        picture = models.ImageField()
         desc = models.TextField()
 
         def __str__(self):

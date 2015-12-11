@@ -11,9 +11,10 @@
     <link rel="stylesheet" href="static/css/dashboard.css">
     <link rel="stylesheet" href="static/font-awesome/css/font-awesome.min.css">
     <style>
-        .login-fields{
-            margin-left: 10em;
-            margin-right:10em;
+        .login-fields 
+        {
+            padding-left: 40%;
+            padding-right:40%;
         }
     </style>
   </head>
@@ -56,13 +57,13 @@
           </div><!-- /.navbar-collapse -->
         </div>
         </nav>
-    <div class="main-page">
         <!--Search Bar End-->
-        <hr>
-        <h1 class="text-center">Login to yardsale</h1>
-        <hr>
-    <div class="login-fields">
-        <form id="login_form" method="post" action="login">
+        <div class="text-center">
+        <hr style="max-width:30em">
+        <h1 class="text-center">Login</h1>
+        <hr style="max-width:30em">
+    <div class="login-fields text-center">
+        <form id="login_form" method="post" action="login" style="max-width:30em;">
             {% csrf_token %}
           <div class="form-group">
             <label for="Username">Username:</label>
