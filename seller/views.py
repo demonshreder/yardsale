@@ -6,7 +6,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
 from seller.models import Document, products
-from seller.forms import DocumentForm, UserForm
+from seller.forms import DocumentForm, UserForm, UploadFileForm 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 
@@ -15,7 +15,7 @@ from django.contrib.auth import logout
 # Create your views here.
 
 def home(request):
-        return render(request,'seller/home.html', {'seller_folks':User.objects.all()})
+        return render(request,'seller/home.html', {'seller_folks':User.objects.all(),"u":request.user})
 
 @login_required
 def channel_edit(request):
@@ -125,7 +125,7 @@ def user_login(request):
     else:
         # No context variables to pass to the template system, hence the
         # blank dictionary object...
-        return render(request, 'seller/login.html', {})
+        return render(request, 'seller/channel.html', {"u":request.user})
 
 # Use the login_required() decorator to ensure only those logged in can access the view.
 @login_required
@@ -137,30 +137,33 @@ def user_logout(request):
     return HttpResponseRedirect('/')
 
 def profile(request):
-        u = request.POST
-        error = ""
-        try:
-            b = sellers(first_name=s['first_name'],last_name=s['last_name'],phone=s['phone'],email=s['email'],address=str(s['address']),desc=s['desc'],timings=s['timings'],video=s['video'])
-            b.save()
-            kek= True
-        except Exception:
-            error = str(Exception)
-            kek = False
+        #u = request.POST
+        #error = ""
+        #try:
+         #   b = sellers(first_name=s['first_name'],last_name=s['last_name'],phone=s['phone'],email=s['email'],address=str(s['address']),desc=s['desc'],timings=s['timings'],video=s['video'])
+          #  b.save()
+          #  kek= True
+        #except Exception:
+         #   error = str(Exception)
+          #  kek = False
 
-        if kek:
-            return render (request, 'seller/profile.html', {'post':request.POST})
-        else:
-            return render(request,'seller/profile.html',{'post':error})
-        #return render(request,'seller/profile.html')
+       # if kek:
+        #    return render (request, 'seller/profile.html', {'post':request.POST})
+        #else:
+         #   return render(request,'seller/profile.html',{'post':error})
+        return render(request,'seller/profile.html',{"u":request.user})
 def product(request):
-        return render(request, 'seller/product.html')
+        return render(request, 'seller/product.html',{"u":request.user})
+
+def contact(request):
+        return render(request, 'seller/contact.html',{"u":request.user})
 
 def index(request):
         return render(request, 'seller/index.html')
 
 @login_required
 def restricted(request):
-        return render(request, 'seller/contact.html')
+        return render(request, 'seller/contact.html',{"u":request.user})
 
 def grid(request):
         return render(request, 'seller/grid.html')
@@ -181,14 +184,14 @@ def my_products(request):
         else:
             error = ""
             try:
-                b = products(seller=u, product_name=s['product_name'],age=s['age'], sold="FALSE",reason=s['reason'],listed="2015-01-01",video=s['video'],desc=s['desc'])
+                b = products(seller=u, product_name=s['product_name'],age=s['age'], sold="FALSE",reason=s['reason'],listed="2015-01-01",video=s['video'],picture=s['picture'], desc=s['desc'])
                 b.save()
                 kek= True
             except Exception:
                 error = str(Exception)
                 kek = False
             if kek:
-                return render (request, "seller/my_products.html", {"u":u, "u_products":u.products_set.all()})
+                return render (request, "seller/my_products.html", {"u":u, "u_products":u.products_set.all(), "q":request.FILES})
             else:
                 return HttpResponse
 

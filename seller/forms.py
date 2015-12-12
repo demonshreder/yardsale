@@ -17,6 +17,9 @@ class UserForm(forms.ModelForm):
 		model = User
 		fields = ('username', 'email', 'password', 'first_name','last_name')
 
+class UploadFileForm(forms.ModelForm):
+	file = forms.FileField()
+
 #class UserProfileForm(forms.ModelForm):
 	#class Meta:
 		#model = UserProfile

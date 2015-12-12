@@ -37,8 +37,8 @@
           </style>
         </head>
         <body>
-          <div class="content">
-            <div class="container-fluid title-bar">
+  <div class="content">
+        <div class="container-fluid title-bar">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -62,10 +62,11 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
               <li class="dropdown">
-                <a href="profile.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{u.first_name}}'s Channel <span class="caret"></span></a>
+                <a href="channel" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{u.first_name}}'s Channel {{q}}<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="profile.html">My Homepage</a></li>
-                  <li><a href="profile.html">Sign-Out</a></li>
+                  <li><a href="channel">My Account</a></li>
+                  <li><a href="my_products">My Products</a></li>
+                  <li><a href="logout">Sign-Out</a></li>
                 </ul>
               </li>
             </ul>
@@ -126,8 +127,9 @@
                             <input type="url" name="video" class="form-control" id="video" placeholder="Video of the Product">
                           </div>
                           <div class="form-group">
-                            <label for="picture">Picture</label>
-                            <input type="url" class="form-control" id="video" name="picture"placeholder="Picture of the Product">
+                            <label for="picture">Product Picture</label>
+                            <input type="file" id="picture" name="picture">
+                            <p class="help-block">Please upload a picture of your own old product.</p>
                           </div>
                            <div class="form-group">
                             <label for="desc">Description</label>
@@ -165,26 +167,34 @@
                         <h4 class="modal-title" id="editprodLabel"><h4>Edit Product</h4>
                       </div>
                       <div class="modal-body">
-                        <form>
+                                               <form action="my_products" method="post" id="add_product_form">
+                          {% csrf_token %}
                           <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-                          </div>
-                          <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                            <label for="product_name">Name</label>
+                            <input type="text" class="form-control" id="prodcut_name" name="product_name"placeholder="{{p.product_name}}">
                           </div>
                           <div class="form-group">
-                            <label for="exampleInputFile">File input</label>
-                            <input type="file" id="exampleInputFile">
-                            <p class="help-block">Example block-level help text here.</p>
+                            <label for="age">Age</label>
+                            <input type="text" class="form-control" id="age" name="age"placeholder="{{p.age}}">
                           </div>
-                          <div class="checkbox">
-                            <label>
-                              <input type="checkbox"> Check me out
-                            </label>
+                          <div class="form-group">
+                            <label for="reason">Reason for selling</label>
+                            <input type="text" name="reason"class="form-control" id="reason" placeholder="{{p.reason}}">
                           </div>
-                          <button type="submit" class="btn btn-default">Submit</button>
+                          <div class="form-group">
+                            <label for="video">Video</label>
+                            <input type="url" name="video" class="form-control" id="video" placeholder="{{p.video}}">
+                          </div>
+                          <div class="form-group">
+                            <label for="picture">Product Picture</label>
+                            <input type="file" id="picture" name="picture">
+                            <p class="help-block">Please upload a picture of your own old product.</p>
+                          </div>
+                           <div class="form-group">
+                            <label for="desc">Description</label>
+                            <input type="text" class="form-control" id="video" name="desc" placeholder="{{p.desc}}">
+                          </div>
+                          <button type="submit" class="btn btn-default">Edit</button>
                         </form>
                       </div>
                     </div>

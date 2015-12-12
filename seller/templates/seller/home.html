@@ -51,8 +51,8 @@
   <body>
 
 <div class="content">
-  <nav class="navbar navbar-default">
-            <div class="container-fluid title-bar">
+  <div class="content">
+        <div class="container-fluid title-bar">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -76,41 +76,46 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
               <li class="dropdown">
-                <a href="channel" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="display:inline-block">My Channel <span class="caret"></span></a>
+                <a href="channel" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{u.first_name}}'s Channel {{q}}<span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="channel">My Page</a></li>
-                  <li><a href="channel">Edit Account Settings</a></li>
-                  <li><a href="my_products">Edit Products</a></li>
+                  <li><a href="channel">My Account</a></li>
+                  <li><a href="my_products">My Products</a></li>
+                  <li><a href="logout">Sign-Out</a></li>
                 </ul>
               </li>
             </ul>
           </div><!-- /.navbar-collapse -->
         </div>
-</nav>
-<div class="main-page text-center">
+    </div>
+<div class="col-md-12">
+  <div class="col-md-2"></div>
+<div class="col-md-8">
   {% for s in seller_folks %}
-  <div class="col-md-12">
-    <div class="col-md-4">
-      <hr>
-      {{s.first_name}} {{s.last_name}}
-      <hr>
-      <img src="{{s.picture}}" class="seller-image">
-      </div>
-      <div class="col-md-8 container-fluid">
+  <div style="margin-top:5em"></div>
+  <a href="seller/profile" method="post"><h3>{{s.first_name}} {{s.last_name}}</h3></a><a href="seller/products" class="pull-right" style="margin-top:-5%"><h4>(See all)</h4></a>
+  <hr style="width:100%">
+  <br>
+  <div class="col-md-12 container-fluid" style="margin-left:-2%">
         <div class="row">
-          {% for p in s.products %}
-          <div class="col-xs-6 col-md-3">
+          {% for p in s.products_set.all|slice:":4" %}
+          <div class="col-xs-4 col-md-3 text-center">
             <a href="product" class="thumbnail">
-              <img src="{{p.picture}}" alt="{{p.product_name}}">
+              <img src="static/img/ph{{p.id}}.jpg" alt="{{p.product_name}}">
               <hr>
               <h4>{{p.product_name}}</h4>
             </a>
           </div>
           {% endfor %}
       </div>
+      <div style="margin-top:5em"></div>
     </div>
-  </div>
-    {% endfor %}
+  {% endfor %}
+</div>
+<br>
+<br>
+<br>
+<div class="col-md-2"></div>
+</div>
   <div id="footer">
   <hr>
   <div class="text-center"> &copy; 2015 yardsale</div>

@@ -11,43 +11,53 @@
       background-image:url('static/img/ph4.jpg');
       color:black;
       }
+      .thumbnail{
+        height:15em;
+      }
+      .title-bar{
+        background-color: #EBEBEB;
+      }
       </style>
     </head>
     <body>
       {{Sellboy}}
-      <div class="content">
-        <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="home.html"><img src="static/img/YardSale.png" style="height:30px"></a>
-        </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="col-lg-6 search-box">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search for products">
-            <span class="input-group-btn">
-              <button class="btn btn-default" type="button">Go!</button>
-            </span>
-        </div>
-        <!-- /input-group -->
-      </div>
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown">
-            <a href="profile.html" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My Channel <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="profile.html">My Homepage</a></li>
-              <li><a href="profile.html">Sign-Out</a></li>
+  <div class="content">
+        <div class="container-fluid title-bar">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="/">yardsale</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="col-lg-6 search-box">
+              <div class="input-group search-bar">
+                <input type="text" class="form-control" placeholder="Search for products">
+                <span class="input-group-btn">
+                  <button class="btn btn-default" type="button">Go!</button>
+                </span>
+            </div>
+            <!-- /input-group -->
+          </div>
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+                <a href="channel" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{u.first_name}}'s Channel {{q}}<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="channel">My Account</a></li>
+                  <li><a href="my_products">My Products</a></li>
+                  <li><a href="logout">Sign-Out</a></li>
+                </ul>
+              </li>
             </ul>
-          </li>
-        </ul>
-      </div><!-- /.navbar-collapse -->
+          </div><!-- /.navbar-collapse -->
+        </div>
+    </div>
+
     </div>
     <div class="jumbotron">
     <h1 class="text-center">Demonshreder</h1>
@@ -61,9 +71,9 @@
     <div class="main-content">
       <div class="col-md-12">
       <ul class="nav nav-pills">
-          <li role="presentation" class="active"><a href="home.html">Home</a></li>
-          <li role="presentation"><a href="product.html">Product</a></li>
-          <li role="presentation"><a href="contact.html">Contact</a></li>
+          <li role="presentation" class="active"><a href="profile">Home</a></li>
+          <li role="presentation"><a href="product">Product</a></li>
+          <li role="presentation"><a href="contact">Contact</a></li>
       </ul>
 
       <br>
@@ -79,7 +89,7 @@
       <div class="text-des col-md-7">
         <h2 id="about">About Demonshreder</h2>
         <textarea class="form-control" rows="8"></textarea>
-        <a class="btn btn-default cont-button" href="contact.html" role="button">Contact Seller</a>
+        <a class="btn btn-default cont-button" href="contact" role="button">Contact Seller</a>
       </div>
     </div>
   </div>
@@ -87,7 +97,7 @@
       <!-- Categories -->
    <h3 class="text-left">Products</h3>
    <div class="row">
-   <a href="grid.html">
+   <a href="product">
     <div class="col-sm-6 col-md-4 text-center">
       <div class="thumbnail">
         <img src="static/img/ph3.jpg" alt="Gadgets">
@@ -98,7 +108,7 @@
     </div>
   </a>
 
-  <a href="grid.html">
+  <a href="product">
     <div class="col-sm-6 col-md-4 text-center">
       <div class="thumbnail">
         <img src="static/img/product-2.jpg" alt="Posters">
@@ -109,7 +119,7 @@
     </div>
   </a>
 
-  <a href="grid.html">
+  <a href="product">
     <div class="col-sm-6 col-md-4 text-center">
       <div class="thumbnail">
         <img src="static/img/product-4.jpg" alt="...">
