@@ -86,8 +86,7 @@
   <div class="col-md-2"></div>
 <div class="col-md-8">
   {% for s in seller_folks %}
-  <div style="margin-top:5em"></div>
-  <a href="seller/profile" method="post"><h3>{{s.first_name}} {{s.last_name}}</h3></a><a href="products" class="pull-right" style="margin-top:-5%"><h4>(See all)</h4></a>
+  <a href="profile?seller={{s.id}}"><h3>{{s.first_name}} {{s.last_name}}</h3></a><a href="products" class="pull-right" style="margin-top:-5%"><h4>(See all)</h4></a>
   <hr style="width:100%">
   <br>
   <div class="col-md-12 container-fluid" style="margin-left:-2%">

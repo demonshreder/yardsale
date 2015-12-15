@@ -34,7 +34,8 @@ urlpatterns = [
     url(r'^login$', seller.views.user_login, name='login'),
     url(r'^restricted', seller.views.restricted, name='restricted'),
     url(r'^logout$', seller.views.user_logout, name='logout'),
-    url(r'^channel_edit$', seller.views.channel_edit, name='channel_edit')
+    url(r'^channel_edit$', seller.views.channel_edit, name='channel_edit'),
+    url(r'^seller/profile/(?P<sell_guy>s)$', seller.views.profile, name='profile'),
 ]
 
 if settings.DEBUG:

@@ -46,7 +46,7 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
               <li class="dropdown">
-                <a href="channel" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{u.first_name}}'s Channel {{q}}<span class="caret"></span></a>
+                <a href="channel" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{u.first_name}}'s Channel<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a href="channel">My Account</a></li>
                   <li><a href="my_products">My Products</a></li>
@@ -60,17 +60,16 @@
 
     </div>
     <div class="jumbotron">
-    <h1 class="text-center">Demonshreder</h1>
+    <h1 class="text-center">{{s.first_name}} {{s.last_name}}</h1>
     </div>
 
-  <div class="col-md-12 ">
-
-  <div class="col-md-10">
-    <h4>Demonshreder</h4>
-  </div>
+  <div class="col-md-12">
+  <div class="col-md-0.5"></div>
+  <div class="col-md-11">
+  <h4>{{s.first_name}}</h4>
     <div class="main-content">
       <div class="col-md-12">
-      <ul class="nav nav-pills">
+      <ul class="nav nav-pills" style="margin-left:-0.5%">
           <li role="presentation" class="active"><a href="profile">Home</a></li>
           <li role="presentation"><a href="product">Product</a></li>
           <li role="presentation"><a href="contact">Contact</a></li>
@@ -87,48 +86,31 @@
       </div>
       </div>
       <div class="text-des col-md-7">
-        <h2 id="about">About Demonshreder</h2>
+        <h2 id="about">About {{s.first_name}}</h2>
         <div style="height:14.6em; border: 1px solid #DDDDDD; border-radius:2%"><p style="padding:0.5em; font-size:1.3em; font-family: 'Quicksand', sans-serif;">Hey! Thanks for coming here. I am a second year student at Ashoka. I cleared my locker recently and found that all this stuff was just lying around. I have course books for SPF, Literature and the World and Principles of Science. Since I don't use my phone often, it would be great if you could email me.</p></div>
         <a class="btn btn-default cont-button" href="contact" role="button">Contact Seller</a>
       </div>
     </div>
   </div>
+</div>
+<div class="col-md-0.5"></div>
+</div>
   <div class="col-md-12 product-panel">
       <!-- Categories -->
    <h3 class="text-left">Products</h3>
+   {% for p in s.products_set.all|slice:":3" %}
    <div class="row">
    <a href="product">
     <div class="col-sm-6 col-md-4 text-center">
       <div class="thumbnail">
-        <img src="static/img/3.jpg" alt="Gadgets">
+        <img src="static/img/{{forloop.counter}}.jpg" alt="Gadgets">
         <div class="caption">
-          <h4>Sony TV</h4>
+          <h4>{{p.product_name}}</h4>
         </div>
       </div>
     </div>
   </a>
-
-  <a href="product">
-    <div class="col-sm-6 col-md-4 text-center">
-      <div class="thumbnail">
-        <img src="static/img/product-2.jpg" alt="Posters">
-        <div class="caption">
-          <h4>Casablanca Poster</h4>
-          </div>
-      </div>
-    </div>
-  </a>
-
-  <a href="product">
-    <div class="col-sm-6 col-md-4 text-center">
-      <div class="thumbnail">
-        <img src="static/img/product-4.jpg" alt="...">
-        <div class="caption">
-          <h4>Ricardo T-Shirt</h4>
-          </div>
-      </div>
-    </div>
-  </a>
+{% endfor %}
   </div><!-- Category row ends-->
   </div>
 

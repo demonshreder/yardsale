@@ -151,6 +151,7 @@ def user_logout(request):
     return HttpResponseRedirect('seller/login.html')
 
 def profile(request):
+        s = User.objects.get(id=request.GET['seller'])
         #u = request.POST
         #error = ""
         #try:
@@ -165,7 +166,7 @@ def profile(request):
         #    return render (request, 'seller/profile.html', {'post':request.POST})
         #else:
          #   return render(request,'seller/profile.html',{'post':error})
-        return render(request,'seller/profile.html',{"u":request.user})
+        return render(request,'seller/profile.html',{"u":request.user, "s":s})
 def product(request):
         return render(request, 'seller/product.html',{"u":request.user})
 
