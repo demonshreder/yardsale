@@ -82,6 +82,7 @@ def register(request):
 
             # Update our variable to tell the template registration was successful.
             registered = True
+            return render(request,'seller/login.html', {'user_form': user_form, registered: 'registered'} )
 
         # Invalid form or forms - mistakes or something else?
         # Print problems to the terminal.
@@ -93,9 +94,11 @@ def register(request):
     # These forms will be blank, ready for user input.
     else:
         user_form = UserForm()
+        return render(request,'seller/register.html', {'user_form': user_form, registered: 'registered'} )
 
     # Render the template depending on the context.
-    return render(request,'seller/register.html', {'user_form': user_form, registered: 'registered'} )
+    #return render(request,'seller/register.html', {'user_form': user_form, registered: 'registered'} )
+
         
 def user_login(request):
 
