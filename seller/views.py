@@ -14,6 +14,17 @@ from django.contrib.auth import logout
 
 # Create your views here.
 
+def upload_file(request):
+    if request.method == 'POST':
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            # file is saved
+            form.save()
+            return HttpResponse
+    else:
+        form = UploadFileForm()
+    return render(request, 'seller/upload.html', {'form': form})
+
 def home(request):
         return render(request,'seller/home.html', {'seller_folks':User.objects.all(),"u":request.user})
 
@@ -111,7 +122,7 @@ def user_login(request):
                 # If the account is valid and active, we can log the user in.
                 # We'll send the user back to the homepage.
                 login(request, user)
-                return render(request,'seller/channel.html',{'user_folk':username, 'user_folk_id':user.id} )
+                return render(request,'seller/home.html',{"u":request.user,'user_folk':username, 'user_folk_id':user.id,'seller_folks':User.objects.all()} )
             else:
                 # An inactive account was used - no logging in!
                 return HttpResponse("Your yardsale account is disabled.")
@@ -125,7 +136,7 @@ def user_login(request):
     else:
         # No context variables to pass to the template system, hence the
         # blank dictionary object...
-        return render(request, 'seller/channel.html', {"u":request.user})
+        return render(request, 'seller/login.html', {"u":request.user})
 
 # Use the login_required() decorator to ensure only those logged in can access the view.
 @login_required
@@ -134,7 +145,7 @@ def user_logout(request):
     logout(request)
 
     # Take the user back to the homepage.
-    return HttpResponseRedirect('/')
+    return HttpResponseRedirect('seller/login.html')
 
 def profile(request):
         #u = request.POST
@@ -177,21 +188,22 @@ def channel(request):
 
 @login_required
 def my_products(request):
+        form = UploadFileForm(request.POST, request.FILES)
         u = request.user
         s = request.POST
         if len(s)==0:
-            return render(request, 'seller/my_products.html', {"u":u, "u_products":u.products_set.all()})# "u_products":u.products},#
+            return render(request, 'seller/my_products.html', {"u":u, "u_products":u.products_set.all(), "form":form})# "u_products":u.products},#
         else:
             error = ""
             try:
-                b = products(seller=u, product_name=s['product_name'],age=s['age'], sold="FALSE",reason=s['reason'],listed="2015-01-01",video=s['video'],picture=s['picture'], desc=s['desc'])
+                b = products(seller=u, product_name=s['product_name'],age=s['age'], sold="FALSE",reason=s['reason'],listed="2015-01-01",video=s['video'], desc=s['desc'])
                 b.save()
                 kek= True
             except Exception:
                 error = str(Exception)
                 kek = False
             if kek:
-                return render (request, "seller/my_products.html", {"u":u, "u_products":u.products_set.all(), "q":request.FILES})
+                return render (request, "seller/my_products.html", {"u":u, "u_products":u.products_set.all(), "q":request.FILES.getlist('picture')})
             else:
                 return HttpResponse
 

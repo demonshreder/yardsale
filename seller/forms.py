@@ -2,7 +2,7 @@
 
 from django import forms
 from django.contrib.auth.models import User
-from seller.models import UserProfile
+from seller.models import products
 
 
 class DocumentForm(forms.Form):
@@ -18,7 +18,10 @@ class UserForm(forms.ModelForm):
 		fields = ('username', 'email', 'password', 'first_name','last_name')
 
 class UploadFileForm(forms.ModelForm):
-	file = forms.FileField()
+	
+	class Meta:
+		model = products
+		fields = ('picture',)
 
 #class UserProfileForm(forms.ModelForm):
 	#class Meta:

@@ -30,7 +30,7 @@ class products(models.Model):
         listed = models.DateField()
         sold = models.BooleanField()
         video = models.URLField()
-        picture = models.ImageField(upload_to="product_images")
+        picture = models.ImageField(upload_to="product_images",default = 'static/img/placeholder.jpg')
         desc = models.TextField()
 
         def __str__(self):

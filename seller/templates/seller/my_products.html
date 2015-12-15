@@ -62,7 +62,7 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
               <li class="dropdown">
-                <a href="channel" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{u.first_name}}'s Channel {{q}}<span class="caret"></span></a>
+                <a href="channel" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{u.first_name}}'s Channel<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a href="channel">My Account</a></li>
                   <li><a href="my_products">My Products</a></li>
@@ -108,7 +108,7 @@
                         <h4 class="modal-title" id="addprodLabel">New Product</h4>
                       </div>
                       <div class="modal-body">
-                        <form action="my_products" method="post" id="add_product_form">
+                        <form action="my_products" method="post" id="add_product_form" enctype='multipart/form-data'>
                           {% csrf_token %}
                           <div class="form-group">
                             <label for="product_name">Name</label>
@@ -129,7 +129,7 @@
                           <div class="form-group">
                             <label for="picture">Product Picture</label>
                             <input type="file" id="picture" name="picture">
-                            <p class="help-block">Please upload a picture of your own old product.</p>
+                            <p class="help-block">Picture of your old product</p>
                           </div>
                            <div class="form-group">
                             <label for="desc">Description</label>
@@ -142,23 +142,15 @@
                   </div>
                 </div>
                 <!--END ADD MODAL-->
-                
                 {% for p in u_products %}
                         <div class="col-sm-4 col-md-3">
                           <div class="thumbnail text-center" data-toggle="modal" data-target="#editprod">
-                            <img src="static/img/ph{{i}}.jpg" alt="..." style="height:10em">
+                            <img src="static/img/{{ forloop.counter }}.jpg" alt="..." style="height:10em">
                             <hr>
                             <p style="font-size:1.2em; font-family:Helvetica">{{p.product_name}}</p>
                           </div>
                       </div>
-              {% endfor %}
-            </div>
-              <hr>
-              <div class="text-center col-md-12" style="font-family:Comic Sans MS; font-size:1.5em"> That's all my human!</div>
-              </div>
-              <hr>
-
-                <!--Edit Modal -->
+                      <!--Edit Modal -->
                 <div class="modal fade" id="editprod" tabindex="-1" role="dialog" aria-labelledby="editprodLabel">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -200,6 +192,14 @@
                     </div>
                   </div>
                 </div>
+              {% endfor %}
+            </div>
+              <hr>
+              <div class="text-center col-md-12" style="font-family:Comic Sans MS; font-size:1.5em"> That's all my human!</div>
+              </div>
+              <hr>
+
+                
 
   </div>
   </div>
