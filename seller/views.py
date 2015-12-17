@@ -26,8 +26,10 @@ def upload_file(request):
     return render(request, 'seller/upload.html', {'form': form})
 
 def home(request):
-        return render(request,'seller/home.html', {'seller_folks':User.objects.all(),"u":request.user})
-
+        if request.user.is_authenticated():
+            return render(request,'seller/home.html', {'seller_folks':User.objects.all(),"u":request.user})
+        else:
+            return HttpResponseRedirect('register')
 @login_required
 def channel_edit(request):
         return render(request,'seller/channel_edit.html', {'u':request.user})
@@ -152,6 +154,7 @@ def user_logout(request):
 
 def profile(request):
         s = User.objects.get(id=request.GET['seller'])
+        p= products.objects.get(id=request.GET['product'])
         #u = request.POST
         #error = ""
         #try:
@@ -166,14 +169,16 @@ def profile(request):
         #    return render (request, 'seller/profile.html', {'post':request.POST})
         #else:
          #   return render(request,'seller/profile.html',{'post':error})
-        return render(request,'seller/profile.html',{"u":request.user, "s":s})
+        return render(request,'seller/profile.html',{"u":request.user, "s":s,"p":p})
 def product(request):
         s = User.objects.get(id=request.GET['seller'])
         p= products.objects.get(id=request.GET['product'])
         return render(request, 'seller/product.html',{"u":request.user, "s":s,"p":p})
 
 def contact(request):
-        return render(request, 'seller/contact.html',{"u":request.user})
+        s = User.objects.get(id=request.GET['seller'])
+        p= products.objects.get(id=request.GET['product'])
+        return render(request, 'seller/contact.html',{"u":request.user,"s":s,"p":p})
 
 def index(request):
         return render(request, 'seller/index.html')
