@@ -168,7 +168,9 @@ def profile(request):
          #   return render(request,'seller/profile.html',{'post':error})
         return render(request,'seller/profile.html',{"u":request.user, "s":s})
 def product(request):
-        return render(request, 'seller/product.html',{"u":request.user})
+        s = User.objects.get(id=request.GET['seller'])
+        p= products.objects.get(id=request.GET['product'])
+        return render(request, 'seller/product.html',{"u":request.user, "s":s,"p":p})
 
 def contact(request):
         return render(request, 'seller/contact.html',{"u":request.user})

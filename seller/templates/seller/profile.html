@@ -7,6 +7,9 @@
       <link rel="stylesheet" href="static/css/bootstrap.min.css">
       <link rel="stylesheet" href="static/css/Base-Style.css">
       <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+      <link rel="icon" 
+      type="image/png" 
+      href="static/img/yardsale.jpg">
       <style>
       .jumbotron{
       background-image:url('static/img/ph4.jpg');
@@ -66,13 +69,13 @@
   <div class="col-md-12">
   <div class="col-md-0.5"></div>
   <div class="col-md-11">
-  <h4>{{s.first_name}}</h4>
+  <h4> {{s.first_name}}</h4>
     <div class="main-content">
       <div class="col-md-12">
-      <ul class="nav nav-pills" style="margin-left:-0.5%">
-          <li role="presentation" class="active"><a href="profile">Home</a></li>
-          <li role="presentation"><a href="product">Product</a></li>
-          <li role="presentation"><a href="contact">Contact</a></li>
+      <ul class="nav nav-pills" style="margin-left:-1.2%">
+          <li role="presentation" class="active"><a href="profile?product={{p.id}}&seller={{s.id}}">Home</a></li>
+          <li role="presentation"><a href="product?product={{p.id}}&seller={{s.id}}">Product</a></li>
+          <li role="presentation"><a href="contact?product={{p.id}}&seller={{s.id}}">Contact</a></li>
       </ul>
 
       <br>
@@ -86,16 +89,15 @@
       </div>
       </div>
       <div class="text-des col-md-7">
-        <h2 id="about">About {{s.first_name}}</h2>
-        <div style="height:14.6em; border: 1px solid #DDDDDD; border-radius:2%"><p style="padding:0.5em; font-size:1.3em; font-family: 'Quicksand', sans-serif;">Hey! Thanks for coming here. I am a second year student at Ashoka. I cleared my locker recently and found that all this stuff was just lying around. I have course books for SPF, Literature and the World and Principles of Science. Since I don't use my phone often, it would be great if you could email me.</p></div>
-        <a class="btn btn-default cont-button" href="contact" role="button">Contact Seller</a>
+        <h2 id="about" style="margin-top:-0.5%; margin-left:0.1%">About {{s.first_name}}</h2>
+        <div style="height:12em; border: 1px solid #DDDDDD; border-radius:2%"><p style="padding:0.5em; font-size:1.3em; font-family: 'Quicksand', sans-serif;">Hey! Thanks for coming here. I am a second year student at Ashoka. I cleared my locker recently and found that all this stuff was just lying around. I have course books for SPF, Literature and the World and Principles of Science. Since I don't use my phone often, it would be great if you could email me.</p></div>
+        <a class="btn btn-default cont-button" href="contact" role="button" style="margin-top:5%">Contact Seller</a>
       </div>
     </div>
   </div>
-</div>
-<div class="col-md-0.5"></div>
-</div>
-  <div class="col-md-12 product-panel">
+
+
+  <div class="col-md-12 product-panel" style="margin-left:-1.1%; margin-right:1%">
       <!-- Categories -->
    <h3 class="text-left">Products</h3>
    {% for p in s.products_set.all|slice:":3" %}
@@ -111,6 +113,13 @@
     </div>
   </a>
 {% endfor %}
+</div>
+</div>
+</div>
+<div class="col-md-0.5"></div>
+</div>
+
+
   </div><!-- Category row ends-->
   </div>
 
